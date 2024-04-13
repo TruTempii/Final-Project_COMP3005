@@ -2,7 +2,7 @@ Assumptions:
 
 
 
-Bonus Feature: Enhanced Functionality
+## Bonus Feature: Enhanced Functionality
 
 For additional functionality, the system has been enriched with two bonus features:
 
