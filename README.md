@@ -18,15 +18,15 @@ Application Setup:
 
 2. Install the psycopg2 library using pip:
 
-pip3 install psycopg2-binary
+    pip3 install psycopg2-binary
 
 3. In the Project_Database.py file, update the connect_to_db() function with your actual database connection details:
 
-conn = psycopg2.connect(
-  dbname='yourDBname',
-  user='postgres',
-  password='yourPassword',
-  host='localhost'
-)
+    conn = psycopg2.connect(
+      dbname='yourDBname',
+      user='postgres',
+      password='yourPassword',
+      host='localhost'
+    )
 
-Replace 'yourDBname' to your Database's name. And replace 'yourPassword' with your actual database password.
+    Replace 'yourDBname' to your Database's name. And replace 'yourPassword' with your actual database password.
