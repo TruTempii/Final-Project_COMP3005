@@ -145,7 +145,7 @@ def update_profile(conn, cur, user_role, user_id):
             'last_name': "Enter new last name (or press Enter to keep current): ",
             'email': "Enter new email (or press Enter to keep current): ",
             'membership_type': "Enter new membership type (or press Enter to keep current): ",
-            'weight': "Enter new weight in pounds (or press Enter to keep current): ",
+            'weight': "Enter new weight in kg (or press Enter to keep current): ",
             'height': "Enter new height in meters (or press Enter to keep current): ",
             'body_fat': "Enter new body fat percentage (or press Enter to keep current): ",
             'cardio_fitness_level': "Enter new cardio fitness level (High/Medium/Low) (or press Enter to keep current): "
