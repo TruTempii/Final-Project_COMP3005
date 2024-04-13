@@ -1,8 +1,49 @@
-Assumptions:
+# Project Files Location: #
 
+The project files are conveniently organized within the repository. Below are the locations of each file:
 
+1. DDL and DML Files:
 
-## Bonus Feature: Enhanced Functionality
+These essential files for database creation and sample data manipulation are located in the SQL_Files folder of the repository.
+
+DDL (Data Definition Language) statements can be found in the DDL.sql file.
+DML (Data Manipulation Language) statements containing sample data are stored in the DML.sql file.
+
+2. ER Diagram and Relational Schema:
+
+Visual representations of the database design can be accessed in the Database_Design folder.
+
+The ER diagram, illustrating entity relationships and cardinalities, is available in the ER_Diagram_Project.png file.
+For a simplified view of the database structure, refer to the Relational_Schema_Project.png file, showcasing the reduction of the ER diagram into relational schemas.
+
+# Assumptions: #
+
+1. User Registration and Authentication:
+
+- A simple login experience is implemented where users, including members, trainers, and administrative staff, can register accounts.
+- Trainers and administrative staff require a special general password during registration for enhanced authentication. This password is known only to authorized personnel.
+- Login functionality is simplified to email-based login without passwords for ease of use.
+
+2. Trainer Availability and Scheduling:
+
+- Each trainer has their own fixed hourly schedule each day, implying their availability for personal training sessions during those hours.
+- Trainers are responsible for managing their schedules and setting the time slots for which they are available.
+
+3. Billing and Payment Handling:
+
+- For simplicity, personal training sessions incur a fixed fee of $100, while group classes have a fixed fee of $65.
+- Billing is automatically handled by the system, with members able to view pending bills and make payments.
+- Administrative staff have oversight of all bills, including pending and paid bills, ensuring effective management.
+
+4. Booking Management and Notifications:
+
+- Personal training sessions can either be conducted in a room or elsewhere, while group classes must be conducted in designated rooms with assigned room IDs.
+- When trainers reschedule their availability, affected bookings are flagged for cancellation. Trainers are prompted to confirm the rescheduling, and affected members are notified accordingly.
+- In the event of administrative actions such as room removal, affected bookings are automatically reassigned to available rooms. If no available rooms remain, the bookings are canceled. For class removals, bookings are always canceled. Members are promptly notified of any changes.
+
+These assumptions aim to streamline user interactions, simplify system operations, and ensure efficient management of bookings, scheduling, and billing processes.
+
+# Bonus Feature: #
 
 For additional functionality, the system has been enriched with two bonus features:
 
