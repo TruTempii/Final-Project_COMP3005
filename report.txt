@@ -41,6 +41,10 @@ For a simplified view of the database structure, refer to the Relational_Schema_
 - When trainers reschedule their availability, affected bookings are flagged for cancellation. Trainers are prompted to confirm the rescheduling, and affected members are notified accordingly.
 - In the event of administrative actions such as room removal, affected bookings are automatically reassigned to available rooms. If no available rooms remain, the bookings are canceled. For class removals, bookings are always canceled. Members are promptly notified of any changes.
 
+5. Initial Values in Tables:
+
+- All tables, except for notifications, have initial values populated within them. Notifications are generated dynamically as bookings are canceled or rooms are reassigned.
+
 These assumptions aim to streamline user interactions, simplify system operations, and ensure efficient management of bookings, scheduling, and billing processes.
 
 # Bonus Feature: #
