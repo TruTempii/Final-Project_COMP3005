@@ -485,6 +485,30 @@ def check_room_capacity(cur, room_id, booking_date, start_time, end_time):
 
     return current_bookings < room_capacity
 
+#function to check if a given time falls within a range
+def is_time_between(begin_time, end_time, check_time):
+    return begin_time <= check_time <= end_time
+
+#function to check if booking times are valid for a class
+def validate_class_booking(cur, class_id, start_time, end_time):
+    cur.execute("SELECT availability_start, availability_end FROM classes WHERE class_id = %s;", (class_id,))
+    availability = cur.fetchone()
+    if availability:
+        class_start = availability[0]
+        class_end = availability[1]
+        return is_time_between(class_start, class_end, start_time) and is_time_between(class_start, class_end, end_time)
+    return False
+
+#function to check if booking times are valid for a trainer
+def validate_trainer_availability(cur, trainer_id, start_time, end_time):
+    cur.execute("SELECT availability_start, availability_end FROM trainers WHERE trainer_id = %s;", (trainer_id,))
+    availability = cur.fetchone()
+    if availability:
+        trainer_start = availability[0]
+        trainer_end = availability[1]
+        return is_time_between(trainer_start, trainer_end, start_time) and is_time_between(trainer_start, trainer_end, end_time)
+    return False
+
 #function to book a class
 def book_class(conn, cur, member_id):
     print("\n--- Book a Class ---")
@@ -513,6 +537,10 @@ def book_class(conn, cur, member_id):
     booking_date = get_date_input("Enter the date for the class (YYYY-MM-DD): ")
     start_time = get_time_input_for_booking("Enter the start time for the class (HH:MM): ")
     end_time = get_time_input_for_booking("Enter the end time for the class (HH:MM): ")
+
+    if not validate_class_booking(cur, class_id, start_time, end_time):
+        print("Invalid booking time for this class.")
+        return
     
     start_datetime = datetime.combine(booking_date, start_time)
     end_datetime = datetime.combine(booking_date, end_time)
@@ -551,6 +579,10 @@ def book_personal_training(conn, cur, member_id):
     booking_date = get_date_input("Enter booking date (YYYY-MM-DD): ")
     start_time = get_time_input_for_booking("Enter start time (HH:MM): ")
     end_time = get_time_input_for_booking("Enter end time (HH:MM): ")
+
+    if not validate_trainer_availability(cur, trainer_id, start_time, end_time):
+        print("Selected trainer is not available during this time.")
+        return
 
     start_datetime = datetime.combine(booking_date, start_time)
     end_datetime = datetime.combine(booking_date, end_time)
