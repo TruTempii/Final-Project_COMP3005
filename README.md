@@ -20,7 +20,7 @@ Application Setup:
 
     pip3 install psycopg2-binary
 
-3. In the Project_Database.py file, update the connect_to_db() function with your actual database connection details:
+3. In the project_database.py file, update the connect_to_db() function with your actual database connection details:
 
     conn = psycopg2.connect(
       dbname='yourDBname',
