@@ -30,3 +30,5 @@ Application Setup:
     )
 
     Replace 'yourDBname' to your Database's name. And replace 'yourPassword' with your actual database password.
+
+4. Run program.
