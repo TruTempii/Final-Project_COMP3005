@@ -44,25 +44,25 @@ INSERT INTO fitness_goals (member_id, goal_type, target_value, target_date) VALU
 
 -- Exercise Routines
 INSERT INTO exercise_routines (member_id, routine_details, routine_date) VALUES
-(1, 'Cardio for 30 minutes', '2024-08-02'),
+(1, 'Cardio for 30 minutes', '2024-07-02'),
 (2, 'Strength training - arms', '2024-08-04'),
-(3, 'Yoga for flexibility', '2024-08-06'),
-(4, 'HIIT workout', '2024-08-08'),
-(5, 'Cardio for 45 minutes', '2024-08-11'),
+(3, 'Yoga for flexibility', '2024-06-06'),
+(4, 'HIIT workout', '2024-07-08'),
+(5, 'Cardio for 45 minutes', '2024-06-11'),
 (6, 'Strength training - legs', '2024-08-13'),
-(7, 'Pilates for core strength', '2024-08-16'),
+(7, 'Pilates for core strength', '2024-07-16'),
 (8, 'Endurance training', '2024-08-18');
 
 -- Fitness Achievements
 INSERT INTO fitness_achievements (member_id, achievement_details, achievement_date) VALUES
-(1, 'Lost 5 lbs in a month', '2024-08-05'),
-(2, 'Increased muscle mass by 2%', '2024-08-07'),
-(3, 'Improved flexibility by 10%', '2024-08-09'),
-(4, 'Ran a 10k race', '2024-08-11'),
-(5, 'Reached weight loss goal', '2024-08-14'),
-(6, 'Gained 1 inch on biceps', '2024-08-16'),
-(7, 'Mastered advanced yoga poses', '2024-08-19'),
-(8, 'Completed a marathon', '2024-08-21');
+(1, 'Lost 5 lbs in a month', '2024-03-05'),
+(2, 'Increased muscle mass by 2%', '2024-04-07'),
+(3, 'Improved flexibility by 10%', '2024-04-09'),
+(4, 'Ran a 10k race', '2024-03-11'),
+(5, 'Reached weight loss goal', '2024-03-14'),
+(6, 'Gained 1 inch on biceps', '2024-03-16'),
+(7, 'Mastered advanced yoga poses', '2024-02-19'),
+(8, 'Completed a marathon', '2024-01-21');
 
 -- Rooms
 INSERT INTO rooms (room_name, capacity) VALUES
