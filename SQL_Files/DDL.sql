@@ -87,7 +87,7 @@ CREATE TABLE bookings (
     booking_type VARCHAR(50),
     booking_start_time TIMESTAMP NOT NULL,
     booking_end_time TIMESTAMP,
-    room_id INT, -- New: Allow room booking for personal training
+    room_id INT, 
     FOREIGN KEY (member_id) REFERENCES members(member_id),
     FOREIGN KEY (trainer_id) REFERENCES trainers(trainer_id),
     FOREIGN KEY (class_id) REFERENCES classes(class_id),
