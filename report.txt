@@ -2,5 +2,16 @@ Assumptions:
 
 
 
-Bonus Feature:
+Bonus Feature: Enhanced Functionality
 
+For additional functionality, the system has been enriched with two bonus features:
+
+1. Trainer and Admin Registration with Enhanced Authentication:
+
+Trainers and administrative staff members are now able to register accounts within the system. However, to ensure higher authentication standards, a special general password is required during the registration process. This password is known only to authorized personnel and serves as an added layer of security for trainer and admin accounts.
+
+2. Notification System for Member Bookings:
+
+A notification system has been implemented to enhance member experience. Members will now receive notifications when their bookings are canceled due to various reasons such as rescheduled trainer availabilities or class cancellations initiated by the administrative staff. These notifications aim to keep members informed and minimize inconvenience.
+
+These bonus features aim to elevate user experience, improve system security, and streamline communication between members, trainers, and administrative staff.
