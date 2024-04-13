@@ -716,13 +716,22 @@ def cancel_booking(conn, cur, member_id):
     booking_id = int(booking_id)  
     #checking if the booking ID exists and belongs to the member
     cur.execute("SELECT * FROM bookings WHERE booking_id = %s AND member_id = %s;", (booking_id, member_id))
-    if not cur.fetchone():
+    booking = cur.fetchone()
+    if not booking:
         print("No such booking found or the booking does not belong to you.")
         return
 
+    #deleting the booking
     cur.execute("DELETE FROM bookings WHERE booking_id = %s;", (booking_id,))
-    #also deleting the bill
-    cur.execute("DELETE FROM bills WHERE member_id = %s AND description LIKE %s;", (member_id, '%session fee%'))
+
+    #deleting the bill related to the canceled booking
+    if booking[2] == 'Class':
+        #for class bookings
+        cur.execute("DELETE FROM bills WHERE member_id = %s AND description = 'session fee' AND booking_id = %s;", (member_id, booking_id))
+    elif booking[2] == 'Personal Training':
+        #for personal training bookings
+        cur.execute("DELETE FROM bills WHERE member_id = %s AND description = 'session fee' AND booking_id = %s;", (member_id, booking_id))
+
     conn.commit()
     print("Booking cancelled successfully.")
 
@@ -815,7 +824,7 @@ def delete_room(conn, cur):
 
         room_name = room_info[0]
 
-        #checking for bookings linked to this room
+        #fetching bookings linked to this room
         cur.execute("""
             SELECT booking_id, member_id, booking_start_time, booking_end_time
             FROM bookings
@@ -843,14 +852,14 @@ def delete_room(conn, cur):
             else:
                 #no alternative rooms available, cancel the booking
                 cur.execute("DELETE FROM bookings WHERE booking_id = %s;", (booking_id,))
-                #delete the bill as the booking is cancelled
-                cur.execute("DELETE FROM bills WHERE member_id = %s AND description LIKE 'session fee';", (member_id,))
+                #deleting the bill as the booking is cancelled
+                cur.execute("DELETE FROM bills WHERE member_id = %s AND description LIKE 'session fee' AND booking_id = %s;", (member_id, booking_id))
                 notification_msg = f"Your booking has been cancelled as no alternative room is available."
 
-            #notify the member
+            #notifying the member
             cur.execute("INSERT INTO notifications (member_id, message) VALUES (%s, %s);", (member_id, notification_msg))
 
-        #now deleting the room
+        #now deletinging the room
         cur.execute("DELETE FROM rooms WHERE room_id = %s;", (room_id,))
         conn.commit()
         print(f"Room '{room_name}' and all associated bookings have been successfully deleted.")
@@ -1028,10 +1037,10 @@ def delete_class(conn, cur):
             #cancelling the booking
             cur.execute("DELETE FROM bookings WHERE booking_id = %s;", (booking_id,))
             #deleting the associated bills
-            cur.execute("DELETE FROM bills WHERE member_id = %s AND description LIKE 'session fee';", (member_id,))
+            cur.execute("DELETE FROM bills WHERE member_id = %s AND description LIKE 'session fee' AND booking_id = %s;", (member_id, booking_id))
         print("Affected bookings have been cancelled and members notified.")
 
-    #now, delete the class
+    #now, deleting the class
     try:
         cur.execute("DELETE FROM classes WHERE class_id = %s;", (class_id,))
         conn.commit()
