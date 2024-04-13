@@ -24,7 +24,7 @@ def connect_to_db():
 #function for logging in
 def user_login(conn, cur):
     email = input("Enter your email: ")
-    # Check each table for the email
+    #checking each table for the email
     cur.execute("SELECT member_id FROM members WHERE email = %s;", (email,))
     member = cur.fetchone()
     if member:
@@ -106,7 +106,8 @@ def register_user(conn, cur):
         entered_password = get_input("Enter the general password to proceed: ")
         if entered_password != GENERAL_PASSWORD:
             print("Incorrect general password. You are not authorized to register as a trainer or admin.")
-            return  # Early return if the password does not match
+            #early return if the password does not match
+            return  
 
     #proceeding to collect other registration details
     first_name = get_input("Enter your first name: ")
@@ -283,7 +284,8 @@ def display_member_dashboard(conn, cur, member_id):
         for notification in notifications:
             read_status = 'Read' if notification[2] else 'Unread'
             #highlighting unread notifications
-            if not notification[2]:  # If notification is unread
+            #if notification is unread
+            if not notification[2]:  
                 print(f"🔔 [Unread] Date: {notification[1].strftime('%Y-%m-%d %H:%M')}, Message: {notification[0]}")
                 #optionally mark as read
                 cur.execute("""
