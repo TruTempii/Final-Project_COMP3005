@@ -1,3 +1,4 @@
+
 #importing modules
 import psycopg2
 from datetime import datetime, timedelta
@@ -129,7 +130,7 @@ def register_user(conn, cur):
         cur.execute(query, (first_name, last_name, email, specialization, availability))
     elif role == 'admin':
         department = get_input("Enter your department: ")
-        admin_role = get_input("Enter your role (Manager/Coordinator): ")
+        admin_role = get_input("Enter your role (Manager/Supervisor/Coordinator/Assistant/Technician): ")
         query = """INSERT INTO administrative_staff (first_name, last_name, email, department, role) VALUES (%s, %s, %s, %s, %s);"""
         cur.execute(query, (first_name, last_name, email, department, admin_role))
 
