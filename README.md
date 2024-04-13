@@ -2,6 +2,8 @@ Final Project - COMP3005
 
 Ahraaz Supra - 101266714
 
+Video Link: https://youtu.be/C_3o4ECq9pg
+
 Database Setup:
 
 1. Ensure that PostgreSQL is installed and running on your system.
