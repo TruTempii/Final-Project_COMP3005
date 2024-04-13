@@ -654,6 +654,23 @@ def reschedule_booking(conn, cur, member_id):
     new_start_datetime = datetime.combine(new_date, new_start_time)
     new_end_datetime = datetime.combine(new_date, new_end_time)
 
+    #checking for conflicts
+    cur.execute("""
+        SELECT booking_id
+        FROM bookings
+        WHERE member_id = %s
+        AND (
+            (%s, %s) OVERLAPS (booking_start_time, booking_end_time)
+            OR %s BETWEEN booking_start_time AND booking_end_time
+            OR %s BETWEEN booking_start_time AND booking_end_time
+        );
+    """, (member_id, new_start_datetime, new_end_datetime, new_start_datetime, new_end_datetime))
+    conflicting_bookings = cur.fetchall()
+
+    if conflicting_bookings:
+        print("This rescheduled booking conflicts with existing bookings.")
+        return
+
     #proceeding to update the booking with new times
     cur.execute("""
         UPDATE bookings 
