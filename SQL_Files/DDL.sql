@@ -67,7 +67,7 @@ CREATE TABLE rooms (
     capacity INT
 );
 
--- Adjusted Classes Table
+-- Classes Table
 CREATE TABLE classes (
     class_id SERIAL PRIMARY KEY,
     class_name VARCHAR(255) NOT NULL,
