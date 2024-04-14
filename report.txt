@@ -16,6 +16,32 @@ Visual representations of the database design can be accessed in the Database_De
 The ER diagram, illustrating entity relationships and cardinalities, is available in the ER_Diagram_Project.png file.
 For a simplified view of the database structure, refer to the Relational_Schema_Project.png file, showcasing the reduction of the ER diagram into relational schemas.
 
+# Conceptual Design: #
+
+- Members Table: This table stores information about the members of the health and fitness club. It includes details such as their names, email addresses, membership types, and physical metrics like weight, height, body fat percentage, and cardio fitness level. Each member is uniquely identified by a member_id.
+
+- Trainers Table: This table holds data about the trainers employed by the club. It includes their names, email addresses, specialization areas, and availability timings. Similar to the members table, each trainer is assigned a unique trainer_id.
+
+- Administrative Staff Table: This table contains details of the administrative staff working in different departments of the club, such as facilities, finance, member services, etc. It includes their names, email addresses, departments, and roles within the organization. Each staff member is identified by an admin_id.
+
+- Fitness Goals Table: Here, the fitness goals set by members are recorded. Each goal is associated with a specific member (member_id), and it includes details like the type of goal (e.g., weight loss, muscle gain), the target value to achieve, and the target date for achieving the goal. Each goal is uniquely identified by a goal_id.
+
+- Exercise Routines Table: This table tracks the exercise routines followed by club members. It records details such as the member performing the routine (member_id), the description of the routine, and the date when it was performed. Each routine is identified by a unique routine_id.
+
+- Fitness Achievements Table: This table stores information about the fitness achievements attained by members. It includes details such as the member achieving the milestone (member_id), the description of the achievement, and the date when it was accomplished. Each achievement is uniquely identified by an achievement_id.
+
+- Rooms Table: This table maintains data about the rooms available in the club premises. It includes information like the room name and its capacity. Each room is assigned a unique identifier (room_id).
+
+- Classes Table: This table represents the fitness classes offered by the club. It includes details such as the class name, required equipment, availability timings, and the room where the class takes place (room_id). Each class is uniquely identified by a class_id.
+
+- Bookings Table: This table tracks the bookings made by members for personal training sessions or classes. It records details such as the member making the booking (member_id), the trainer assigned (if applicable), the class booked (if applicable), the type of booking (personal training or class), the start and end times of the booking, and the room where the booking takes place (room_id). Each booking is identified by a unique booking_id.
+
+- Equipment Table: This table stores information about the equipment available in the club. It includes details such as the equipment name and the date of its last maintenance. Each piece of equipment is uniquely identified by an equipment_id.
+
+- Notifications Table: This table manages notifications sent to club members. It includes details such as the member receiving the notification (member_id), the message content, whether the notification has been read, and the timestamp of when it was created. Each notification is identified by a unique notification_id.
+
+- Bills Table: Finally, the bills table tracks the financial transactions related to club bookings. It includes details such as the member responsible for the bill (member_id), a description of the bill, the amount due, the billing date, the due date, and the status of the bill. Each bill is uniquely identified by a bill_id.
+
 # Assumptions: #
 
 1. User Registration and Authentication:
