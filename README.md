@@ -4,6 +4,8 @@ Ahraaz Supra - 101266714
 
 Video Link: https://youtu.be/C_3o4ECq9pg
 
+The application follows a client-server architecture, utilizing Python for the client-side and PostgreSQL for the server-side relational database management system (RDBMS).
+
 Database Setup:
 
 1. Ensure that PostgreSQL is installed and running on your system.
