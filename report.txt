@@ -18,31 +18,121 @@ For a simplified view of the database structure, refer to the Relational_Schema_
 
 # Conceptual Design: #
 
-- Members Table: This table stores information about the members of the health and fitness club. It includes details such as their names, email addresses, membership types, and physical metrics like weight, height, body fat percentage, and cardio fitness level. Each member is uniquely identified by a member_id.
+Members Table:
 
-- Trainers Table: This table holds data about the trainers employed by the club. It includes their names, email addresses, specialization areas, and availability timings. Similar to the members table, each trainer is assigned a unique trainer_id.
+- Represents the individuals who are members of the Health and Fitness Club.
+- Assumption: Each member has a unique identifier (member_id) and is characterized by their personal details such as first_name, last_name, email, membership_type, weight, height, body_fat, and cardio_fitness_level.
 
-- Administrative Staff Table: This table contains details of the administrative staff working in different departments of the club, such as facilities, finance, member services, etc. It includes their names, email addresses, departments, and roles within the organization. Each staff member is identified by an admin_id.
+Trainers Table:
 
-- Fitness Goals Table: Here, the fitness goals set by members are recorded. Each goal is associated with a specific member (member_id), and it includes details like the type of goal (e.g., weight loss, muscle gain), the target value to achieve, and the target date for achieving the goal. Each goal is uniquely identified by a goal_id.
+- Contains information about the trainers employed by the club.
+- Assumption: Each trainer has a unique identifier (trainer_id) and is described by their first_name, last_name, email, specialization, availability_start, and availability_end.
 
-- Exercise Routines Table: This table tracks the exercise routines followed by club members. It records details such as the member performing the routine (member_id), the description of the routine, and the date when it was performed. Each routine is identified by a unique routine_id.
+Administrative Staff Table:
 
-- Fitness Achievements Table: This table stores information about the fitness achievements attained by members. It includes details such as the member achieving the milestone (member_id), the description of the achievement, and the date when it was accomplished. Each achievement is uniquely identified by an achievement_id.
+- Stores details of the administrative staff working in various departments of the club.
+- Assumption: Similar to the members and trainers, each staff member has a unique identifier (admin_id) and is identified by their first_name, last_name, email, department, and role.
 
-- Rooms Table: This table maintains data about the rooms available in the club premises. It includes information like the room name and its capacity. Each room is assigned a unique identifier (room_id).
+Fitness Goals Table:
 
-- Classes Table: This table represents the fitness classes offered by the club. It includes details such as the class name, required equipment, availability timings, and the room where the class takes place (room_id). Each class is uniquely identified by a class_id.
+- Records the fitness goals set by members.
+- Assumption: Each goal is associated with a member through the member_id foreign key. Goals are defined by their goal_type, target_value, and target_date.
 
-- Bookings Table: This table tracks the bookings made by members for personal training sessions or classes. It records details such as the member making the booking (member_id), the trainer assigned (if applicable), the class booked (if applicable), the type of booking (personal training or class), the start and end times of the booking, and the room where the booking takes place (room_id). Each booking is identified by a unique booking_id.
+Exercise Routines Table:
 
-- Equipment Table: This table stores information about the equipment available in the club. It includes details such as the equipment name and the date of its last maintenance. Each piece of equipment is uniquely identified by an equipment_id.
+- Stores information about exercise routines followed by members.
+- Assumption: Each routine is linked to a member through the member_id foreign key. Details of the routine, such as routine_details and routine_date, are recorded.
 
-- Notifications Table: This table manages notifications sent to club members. It includes details such as the member receiving the notification (member_id), the message content, whether the notification has been read, and the timestamp of when it was created. Each notification is identified by a unique notification_id.
+Fitness Achievements Table:
 
-- Bills Table: Finally, the bills table tracks the financial transactions related to club bookings. It includes details such as the member responsible for the bill (member_id), a description of the bill, the amount due, the billing date, the due date, and the status of the bill. Each bill is uniquely identified by a bill_id.
+- Captures the achievements attained by members.
+- Assumption: Achievements are connected to members via the member_id foreign key. Each achievement includes details such as achievement_details and achievement_date.
 
-# Assumptions: #
+Rooms Table:
+
+- Contains data about the rooms or facilities available at the club.
+- Assumption: Each room has a unique identifier (room_id) and attributes like room_name and capacity.
+
+Classes Table:
+
+- Stores details of fitness classes offered by the club.
+- Assumption: Classes are identified by their class_id and have attributes such as class_name, required_equipment, availability_start, and availability_end. The room where the class takes place is specified using the room_id foreign key.
+
+Bookings Table:
+
+- Tracks bookings made by members for training sessions or classes.
+- Assumption: Bookings are associated with members (member_id), trainers (trainer_id), classes (class_id), and rooms (room_id). Details such as booking_type, booking_start_time, and booking_end_time are recorded.
+
+Equipment Table:
+
+- Contains information about the equipment available at the club.
+- Assumption: Each equipment item is identified by a unique equipment_id and includes attributes like equipment_name and last_maintenance_date.
+
+Notifications Table:
+
+- Stores notifications sent to members.
+- Assumption: Notifications are linked to members via the member_id foreign key. They include a message, read status, and created_at timestamp.
+
+Bills Table:
+
+- Records the financial transactions related to member bookings.
+- Assumption: Each bill is associated with a member through the member_id foreign key. It includes details such as description, amount, bill_date, due_date, and status.
+
+# Assumptions regarding Cardinalities and Participation Types: #
+
+Members and Fitness Goals Relationship:
+
+- One-to-Many (1:N): Each member can have multiple fitness goals, but each fitness goal is associated with only one member.
+
+Members and Exercise Routines Relationship:
+
+- One-to-Many (1:N): Each member can have multiple exercise routines, but each routine is associated with only one member.
+
+Members and Fitness Achievements Relationship:
+
+- One-to-Many (1:N): Each member can have multiple fitness achievements, but each achievement is associated with only one member.
+
+Members and Notifications Relationship:
+
+- One-to-Many (1:N): Each member can receive multiple notifications, but each notification is associated with only one member.
+
+Members and Bills Relationship:
+
+- One-to-Many (1:N): Each member can have multiple bills, but each bill is associated with only one member.
+
+Bookings and Members Relationship:
+
+- Many-to-One (N:1): Many bookings can be associated with one member, but each booking is made by only one member.
+
+Bookings and Trainers Relationship:
+
+- Many-to-One (N:1): Many bookings can be associated with one trainer, but each booking is assigned to only one trainer.
+
+Bookings and Classes Relationship:
+
+- Many-to-One (N:1): Many bookings can be associated with one class, but each booking is for only one class.
+
+Bookings and Rooms Relationship:
+
+- Many-to-One (N:1): Many bookings can be made for one room, but each booking is assigned to only one room.
+
+Administrative Staff and Rooms Relationship:
+
+- Many-to-Many (M:N): Each administrative staff member can manage multiple rooms, and each room can be managed by multiple administrative staff members.
+
+Administrative Staff and Classes Relationship:
+
+- Many-to-Many (M:N): Each administrative staff member can manage multiple classes, and each class can be managed by multiple administrative staff members.
+
+Administrative Staff and Equipment Relationship:
+
+- Many-to-Many (M:N): Each administrative staff member can manage multiple equipment items, and each equipment item can be managed by multiple administrative staff members.
+
+Administrative Staff and Bills Relationship:
+
+- Many-to-Many (M:N): Each administrative staff member can oversee multiple bills, and each bill can be overseen by multiple administrative staff members.
+
+# Program Assumptions: #
 
 1. User Registration and Authentication:
 
